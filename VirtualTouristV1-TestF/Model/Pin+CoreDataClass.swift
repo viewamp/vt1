@@ -2,8 +2,6 @@
 //  Pin+CoreDataClass.swift
 //  VirtualTouristV1-TestF
 //
-//
-//
 
 import Foundation
 import CoreData
