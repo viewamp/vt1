@@ -8,14 +8,12 @@ import UIKit
 
 struct Constants {
     
-    // MARK: Flickr
     struct Flickr {
         static let APIScheme = "https"
         static let APIHost = "api.flickr.com"
         static let APIPath = "/services/rest"
     }
     
-    // MARK: Flickr Parameter Keys
     struct FlickrParameterKeys {
         static let Method = "method"
         static let APIKey = "api_key"
@@ -29,7 +27,6 @@ struct Constants {
         static let Page = "page"
     }
     
-    // MARK: Flickr Parameter Values
     struct FlickrParameterValues {
         static let SearchMethod = "flickr.photos.search"
         static let APIKey = "7472f66664da8ec7c8f0dce4d34fb20c"
@@ -41,7 +38,6 @@ struct Constants {
         static let UseSafeSearch = "1"
     }
     
-    // MARK: Flickr Response Keys
     struct FlickrResponseKeys {
         static let Status = "stat"
         static let Photos = "photos"
@@ -52,7 +48,6 @@ struct Constants {
         static let Total = "total"
     }
     
-    // MARK: Flickr Response Values
     struct FlickrResponseValues {
         static let OKStatus = "ok"
     }

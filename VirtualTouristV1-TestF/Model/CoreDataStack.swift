@@ -24,7 +24,6 @@ struct CoreDataStack {
     
     init?(modelName: String) {
         
-        // Assumes the model is in the main bundle
         guard let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd") else {
             print("Unable to find \(modelName)in the main bundle")
             return nil
@@ -38,11 +37,8 @@ struct CoreDataStack {
         }
         self.model = model
         
-        // Create the store coordinator
         coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
         
-        // Create a persistingContext (private queue) and a child one (main queue)
-        // create a context and add connect it to the coordinator
         persistingContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         persistingContext.persistentStoreCoordinator = coordinator
         
@@ -104,9 +100,7 @@ extension CoreDataStack {
             
             batch(self.backgroundContext)
             
-            // Save it to the parent context, so normal saving
-            // can work
-            do {
+             do {
                 try self.backgroundContext.save()
             } catch {
                 fatalError("Error while saving backgroundContext: \(error)")
@@ -120,11 +114,7 @@ extension CoreDataStack {
 extension CoreDataStack {
     
     func save() {
-        // We call this synchronously, but it's a very fast
-        // operation (it doesn't hit the disk). We need to know
-        // when it ends so we can call the next save (on the persisting
-        // context). This last one might take some time and is done
-        // in a background queue
+
         context.performAndWait() {
             
             if self.context.hasChanges {
@@ -137,7 +127,10 @@ extension CoreDataStack {
                 // now we save in the background
                 self.persistingContext.perform() {
                     do {
-                        try self.persistingContext.save()
+                        
+                    try self.context.save()
+                    try self.persistingContext.save()
+                        
                     } catch {
                         fatalError("Error while saving persisting context: \(error)")
                     }

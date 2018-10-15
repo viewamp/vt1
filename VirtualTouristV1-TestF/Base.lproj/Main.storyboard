@@ -98,7 +98,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mb0-0J-gPk">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="Mb0-0J-gPk">
                                                             <rect key="frame" x="0.0" y="0.0" width="170" height="337"/>
                                                         </imageView>
                                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jMP-em-7W1">
@@ -130,7 +130,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="9TE-ns-JEi"/>
                                         </constraints>
-                                        <state key="normal" title="New Collection"/>
+                                        <state key="normal" title="Tap to Refresh Photos"/>
                                         <connections>
                                             <action selector="newCollection:" destination="3xE-C0-Dd1" eventType="touchUpInside" id="uje-wa-pYO"/>
                                         </connections>
@@ -166,4 +166,7 @@
             <point key="canvasLocation" x="324" y="106.59670164917542"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="defaultImage" width="400" height="300"/>
+    </resources>
 </document>

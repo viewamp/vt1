@@ -15,7 +15,7 @@ class PhotoViewController: UIViewController,MKMapViewDelegate,UICollectionViewDe
     var pin: Pin?
     let flickr = FlickrClient.sharedInstance()
     let delegate = UIApplication.shared.delegate as! AppDelegate
-    let numOfImageDisplay = 10
+    let numImagestoDisplay = 15
     var insertIndexCache: [NSIndexPath]!
     var deleteIndexCache: [NSIndexPath]!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -23,11 +23,9 @@ class PhotoViewController: UIViewController,MKMapViewDelegate,UICollectionViewDe
 
     func initializeFlowLayout()
     {
-        // For the image to scale properly.
         collectionView?.contentMode = UIViewContentMode.scaleAspectFit
         collectionView?.backgroundColor = UIColor.white
-        let space : CGFloat = 0.5
-        //decide the dimension based on the orientation of the device.
+        let space : CGFloat = 7.5
         let dimension = (self.view.frame.width - (2 * space)) / 2.5
         collectionViewFlowLayout.minimumInteritemSpacing = space
         collectionViewFlowLayout.minimumLineSpacing = space
@@ -49,7 +47,7 @@ class PhotoViewController: UIViewController,MKMapViewDelegate,UICollectionViewDe
             searchPhoto()
         }
         mapView.centerCoordinate = (pin?.coordinate)!
-        mapView.camera.altitude = 1000
+        mapView.camera.altitude = 125
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -65,7 +63,7 @@ class PhotoViewController: UIViewController,MKMapViewDelegate,UICollectionViewDe
         for photo in fetchedResultsController?.fetchedObjects as! [Photo] {
             delegate.stack.context.delete(photo)
         }
-        //       delegate.stack.save()
+
     }
     var fetchedResultsController : NSFetchedResultsController<NSFetchRequestResult>? {
         didSet {
@@ -106,7 +104,7 @@ class PhotoViewController: UIViewController,MKMapViewDelegate,UICollectionViewDe
                         return
                     }
                     let urlIndex  =  self.shuffleArray(Array(0...(count - 1)))
-                    let range = count < self.numOfImageDisplay ? count : self.numOfImageDisplay
+                    let range = count < self.numImagestoDisplay ? count : self.numImagestoDisplay
                     debugPrint("Range : ",range)
                     let selectedURL = Array(urlIndex.prefix(range))
                     var url = [String]()
@@ -133,7 +131,7 @@ class PhotoViewController: UIViewController,MKMapViewDelegate,UICollectionViewDe
         {
             let j = Int(arc4random_uniform(UInt32(index-1)))
       //      swap(&array[index], &array[j])
-        //    array.swapAt(index, j)
+            array.swapAt(index, j)
 
 
         }
@@ -174,6 +172,7 @@ extension PhotoViewController {
         let photo = fetchedResultsController?.object(at: indexPath) as! Photo
         if photo.imageData == nil{
             cell.activityIndicator.isHidden = false
+            cell.imageView.image = UIImage(named: "defaultImage")
             cell.activityIndicator.startAnimating()
             debugPrint(photo.url)
             DispatchQueue.main.async{

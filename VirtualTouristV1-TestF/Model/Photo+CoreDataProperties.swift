@@ -2,22 +2,23 @@
 //  Photo+CoreDataProperties.swift
 //  VirtualTouristV1-TestF
 //
+//  Created by Rick Mc on 9/3/18.
+//  Copyright © 2018 Rick Mc. All rights reserved.
 //
 //
 
 import Foundation
 import CoreData
 
+
 extension Photo {
-    
+
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Photo> {
-        return NSFetchRequest<Photo>(entityName: "Photo");
+        return NSFetchRequest<Photo>(entityName: "Photo")
     }
-    
+
     @NSManaged public var imageData: NSData?
     @NSManaged public var url: String?
-//    @NSManaged var pin: Pin?
-    @NSManaged var photo: Pin?
-    
-}
+    @NSManaged public var photo: Pin?
 
+}

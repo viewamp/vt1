@@ -2,13 +2,18 @@
 //  Pin+CoreDataClass.swift
 //  VirtualTouristV1-TestF
 //
+//  Created by Rick Mc on 9/3/18.
+//  Copyright © 2018 Rick Mc. All rights reserved.
+//
+//
 
 import Foundation
 import CoreData
 import MapKit
 
 @objc(Pin)
-class Pin: NSManagedObject {
+
+public class Pin: NSManagedObject {
     var coordinate: CLLocationCoordinate2D{
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
@@ -21,3 +26,4 @@ class Pin: NSManagedObject {
     }
     
 }
+

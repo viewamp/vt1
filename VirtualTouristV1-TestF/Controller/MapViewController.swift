@@ -57,7 +57,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
                 print("Number of Pins : \(pins.count)")
             }}
         catch{
-            print("Couldn't find any Pins")
+            print("Couldn't find any Pins.")
         }
         
         for (_,item) in pins.enumerated()
@@ -82,7 +82,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
         }
         catch let error as NSError
         {
-            print("failed to get pin by object id")
+            print("Failed to get pin by object ID.")
             print(error.localizedDescription)
             return
         }
